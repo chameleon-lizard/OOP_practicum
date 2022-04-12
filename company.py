@@ -23,17 +23,13 @@ class Company:
         self.money: float = money
 
         # Parsed JSON
-        insurance_params: Dict[str, int | float | List[int | float]] = json.loads(
-            Path(path).read_text())
+        insurance_params: Dict[str, int | float | List[int | float]] = json.loads(Path(path).read_text())
         # Life insurance parameters
-        # type: ignore
-        self.life_params: List[int | float] = insurance_params["life"]
+        self.life_params: List[int | float] = insurance_params["life"] # type: ignore
         # Home insurance parameters
-        # type: ignore
-        self.home_params: List[int | float] = insurance_params["home"]
+        self.home_params: List[int | float] = insurance_params["home"] # type: ignore
         # Car insurance parameters
-        self.car_params: List[int |
-                              float] = insurance_params["car"]  # type: ignore
+        self.car_params: List[int | float] = insurance_params["car"] # type: ignore
 
         self.sell_insurance("life")
         self.sell_insurance("home")
