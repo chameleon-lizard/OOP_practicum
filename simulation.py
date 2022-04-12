@@ -28,7 +28,7 @@ class Simulation:
         '''
         Helper function to parse the text for life, car and home insurance sales info.
         '''
-        life, car, home = text.split(";")[1:]
+        life, car, home, _ = text.split(";")[1:]
         life_amount = int(life[:life.index("life")])
         car_amount = int(car[:car.index("car")])
         home_amount = int(home[:home.index("home")])
@@ -44,7 +44,6 @@ class Simulation:
         # Paying taxes
         text, c = self.company.pay_taxes()
         change += c
-
         # Stopping insurances
         self.company.stop_insurances(self.stats.step + 1)
 
@@ -53,8 +52,14 @@ class Simulation:
             text_, c = self.company.sell_insurance(i)
             text += "; " + text_
             change += c
+        
+        text_, c = self.company.payout()
+        text += "; " + text_
+        change += c
 
-        self.stats.add_step(self.__parse_output(text), change)
+        self.stats.add_step(self.__parse_output(text), change, c)
+
+        text = f"Money: {round(self.stats.money[-1][1], 2)}; " + text
 
         if self.stats.step == self.until:
             return text, False

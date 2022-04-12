@@ -92,10 +92,10 @@ class Company:
         '''
         # The payout for those fortunate to buy the insurance
         payout: float = sum(i.payout * random.randint(1, 100) /
-                            100 for i in self.insurances if random.randint(0, 10) > 1)
+                            100 for i in self.insurances if random.randint(0, 5) <= 2)
         self.money -= payout
 
-        return (f"Payout is {payout}", -1 * payout)
+        return (f"Payout is {round(payout, 2)}", -1 * payout)
 
     def pay_taxes(self) -> Tuple[str, float]:
         '''
@@ -105,4 +105,4 @@ class Company:
         taxes: float = self.money * 0.09
         self.money -= taxes
 
-        return (f"Taxes are {taxes}", -1 * taxes)
+        return (f"Taxes are {round(taxes, 2)}", -1 * taxes)

@@ -1,4 +1,3 @@
-from turtle import width
 from typing import List
 import matplotlib.pyplot as plt
 import tkinter as tk
@@ -88,7 +87,7 @@ class App():
 
         self.t_scores.delete(0.0, tk.END)
         self.t_scores.insert(
-            0.0, f"Step: {self.simulation.stats.step}\nScore: {round(self.simulation.stats.money[-1][1], 3)}\nLife sold: {self.simulation.stats.sold[-1][0]}\nCar sold: {self.simulation.stats.sold[-1][1]}\nHome sold: {self.simulation.stats.sold[-1][2]}\n")
+            0.0, f"Step: {self.simulation.stats.step}\nScore: {round(self.simulation.stats.money[-1][1], 2)}\nLife sold: {self.simulation.stats.sold[-1][0]}\nCar sold: {self.simulation.stats.sold[-1][1]}\nHome sold: {self.simulation.stats.sold[-1][2]}\nPayouts: {round(self.simulation.stats.payouts[-1], 2)}\nActive: {len(self.simulation.company.insurances)}")
 
     def __close_modal(self, insurancetype: str, insurance_params: List[int | float]) -> None:
         '''
