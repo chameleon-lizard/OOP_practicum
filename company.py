@@ -60,7 +60,7 @@ class Company:
             self.money += insurance.cost
             self.insurances.append(insurance)
 
-        return (f"{amount} {insurance.type} insurances sold for {change}", change)
+        return (f"{amount} {insurance.type} sold for {change}", change)
 
     def sell_insurance(self, insurancetype: str) -> Tuple[str, float]:
         '''
@@ -105,7 +105,7 @@ class Company:
                             100 for i in self.insurances if random.randint(0, 5) <= 2)
         self.money -= payout
 
-        return (f"Payout is {round(payout, 2)}", -1 * payout)
+        return (f"Payout: {round(payout, 2)}", -1 * payout)
 
     def pay_taxes(self) -> Tuple[str, float]:
         '''
@@ -115,4 +115,4 @@ class Company:
         taxes: float = self.money * 0.09
         self.money -= taxes
 
-        return (f"Taxes are {round(taxes, 2)}", -1 * taxes)
+        return (f"Taxes: {round(taxes, 2)}", -1 * taxes)

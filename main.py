@@ -175,11 +175,11 @@ class App():
             selection = self.l_expired.curselection()[0]                    
             match selection:
                 case 0:
-                    self.__modal(Life(*self.simulation.company.life_params))
+                    self.__modal(Life(*self.simulation.company.life_params))  # type: ignore
                 case 1:
-                    self.__modal(Home(*self.simulation.company.home_params))
+                    self.__modal(Home(*self.simulation.company.home_params))  # type: ignore
                 case 2:
-                    self.__modal(Car(*self.simulation.company.car_params))
+                    self.__modal(Car(*self.simulation.company.car_params))  # type: ignore
         except:
             pass
 

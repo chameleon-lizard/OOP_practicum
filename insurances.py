@@ -7,7 +7,7 @@ class Life:
         self.franchise: float = franchise
         self.demand: float = demand
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.type} insurance, {self.cost}, {self.until}, {self.payout}, {self.franchise}"
 
 class Car:
@@ -19,7 +19,7 @@ class Car:
         self.franchise: float = franchise
         self.demand: float = demand
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.type} insurance, {self.cost}, {self.until}, {self.payout}, {self.franchise}"
 
 
@@ -32,7 +32,7 @@ class Home:
         self.franchise: float = franchise
         self.demand: float = demand
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.type} insurance, {self.cost}, {self.until}, {self.payout}, {self.franchise}"
 
         
