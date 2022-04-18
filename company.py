@@ -11,17 +11,28 @@ class Company:
     Class for company.
     '''
 
-    def __init__(self, path, money: float) -> None:
+    def __init__(self, money: float, path: str = "config.json",) -> None:
         '''
         Constructor for company class.
         '''
         # Insurances that are currently active
         self.insurances: List[Life | Car | Home] = []
-        # Insurance contracts that have been fulfilled
-        self.stopped: List[Life | Car | Home] = []
         # The balance of the company
         self.money: float = money
 
+        # Parsed JSON
+        insurance_params: Dict[str, int | float | List[int | float]] = json.loads(Path(path).read_text())
+        # Life insurance parameters
+        self.life_params: List[int | float] = insurance_params["life"] # type: ignore
+        # Home insurance parameters
+        self.home_params: List[int | float] = insurance_params["home"] # type: ignore
+        # Car insurance parameters
+        self.car_params: List[int | float] = insurance_params["car"] # type: ignore
+
+    def set_params(self, path: str = "config.json") -> None: 
+        '''
+        Set params from json.
+        '''
         # Parsed JSON
         insurance_params: Dict[str, int | float | List[int | float]] = json.loads(Path(path).read_text())
         # Life insurance parameters
@@ -84,7 +95,6 @@ class Company:
         for i in self.insurances:
             if step == i.until:
                 self.insurances.remove(i)
-                self.stopped.append(i)
 
     def payout(self) -> Tuple[str, float]:
         '''

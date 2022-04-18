@@ -20,7 +20,20 @@ class Simulation:
         self.until: int = config["until"]  # type: ignore
         self.time: int = 0
         self.company: Company = Company(
-            path, config["startingmoney"])  # type: ignore
+            config["startingmoney"], path)  # type: ignore
+        self.stats: Statistics = Statistics(
+            config["startingmoney"])  # type: ignore
+
+    def set_params(self, path: str = "config.json") -> None:
+        '''
+        Set parameters from json.
+        '''
+        config: Dict[str, int | float | List[int | float]
+                     ] = json.loads(Path(path).read_text())
+        self.until: int = config["until"]  # type: ignore
+        self.time: int = 0
+        self.company: Company = Company(
+            config["startingmoney"], path)  # type: ignore
         self.stats: Statistics = Statistics(
             config["startingmoney"])  # type: ignore
 
